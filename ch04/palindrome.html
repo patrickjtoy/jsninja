@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Palindrome</title>
+		<style type="text/css" media="screen">
+			#results li.pass { color: green; }
+			#results li.fail { color: red; }
+		</style>
+	</head>
+	<body>
+		<ul id="results"></ul>
+		<script>
+
+			(function() {
+				var results;
+
+				this.assert = function assert(value, desc) {
+					var li = document.createElement("li");
+					results = document.getElementById("results");
+					li.className = value ? "pass" : "fail";
+					li.appendChild(document.createTextNode(desc));
+					results.appendChild(li);
+					if (!value) {
+						li.parentNode.parentNode.className = "fail";
+					}
+					return li;
+				};
+			})();
+
+			function isPalindrome(text) {
+				if (typeof text === 'undefined' || text.length < 0) return false;
+				if (text.length >= 0 && text.length <= 1) return true;
+				if (text.charAt(0) != text.charAt(text.length - 1)) return false;
+				return isPalindrome(text.substr(1, text.length - 2));
+			}
+
+			assert(isPalindrome('a'), 'Single character strings are palindromes.');
+			assert(isPalindrome('rawr'), 'Should be false.');
+			assert(isPalindrome('elgoogle'), 'Should be true.');
+			assert(isPalindrome(), 'Not passing an arg should return false.');
+			assert(isPalindrome(''), 'A zero-length string should return true.')
+
+		</script>
+	</body>
+</html>
