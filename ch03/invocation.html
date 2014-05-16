@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Function Invocation</title>
+		<script>
+			(function() {
+				var results;
+
+				this.assert = function assert(value, desc) {
+					var li = document.createElement("li");
+					results = document.getElementById("results");
+					li.className = value ? "pass" : "fail";
+					li.appendChild(document.createTextNode(desc));
+					results.appendChild(li);
+					if (!value) {
+						li.parentNode.parentNode.className = "fail";
+					}
+					return li;
+				};
+			})();
+
+			window.onload = function () {
+
+				function creep() { return this; }
+
+				assert(creep() === window, "Creeping in the window");
+
+				var sneak = creep;
+
+				assert(sneak() === window, "Sneaking in the window");
+
+				var ninja1 = {
+					skulk: creep
+				};
+
+				assert(ninja1.skulk() === ninja1, "The 1st ninja is skulking");
+
+				var ninja2 = {
+					skulk: creep
+				};
+
+				assert(ninja2.skulk() === ninja2, "The 2nd ninja is skulking");
+
+			}
+		</script>
+		<style type="text/css" media="screen">
+			#results li.pass { color: green; }
+			#results li.fail { color: red; }
+		</style>
+	</head>
+	<body>
+		<ul id="results"></ul>
+	</body>
+</html>
