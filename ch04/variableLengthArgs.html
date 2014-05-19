@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>Function Collections</title>
+		<style type="text/css" media="screen">
+			#results li.pass { color: green; }
+			#results li.fail { color: red; }
+		</style>
+	</head>
+	<body>
+		<ul id="results"></ul>
+		<script type="text/javascript" src="assert.js"></script>
+		<script type="text/javascript">
+
+			function smallest(array) {
+				return Math.min.apply(Math, array);
+			}
+
+			function largest(array) {
+				return Math.max.apply(Math, array);
+			}
+
+			assert(smallest([0, 1, 2, 3]) == 0, "Located the smallest value.");
+			assert(largest([0, 1, 2, 3]) == 3, "Located the largest value.");
+
+		</script>
+	</body>
+</html>
